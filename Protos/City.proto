@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package bill.code.twix.controller.rpc.proto.city;
+option java_package = "bill.code.twix.controller.rpc.proto.city";
+
+message CityModelGdto {
+  int32 id = 1;
+  string name = 2;
+}
+
+message CitiesResponse {
+  repeated CityModelGdto cityList = 1;
+}
+
+message Bool {
+  bool result = 1;
+}
+
+message Int {
+  int32 value = 1;
+}
+
+service CityController {
+  rpc getAllCity(google.protobuf.Empty) returns (CitiesResponse) {};
+
+  rpc addCity(CityModelGdto) returns (Bool) {};
+
+  rpc deleteCity(CityModelGdto) returns (Bool) {};
+
+  rpc deleteCityById(Int) returns (Bool) {};
+}
